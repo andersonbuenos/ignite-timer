@@ -61,7 +61,7 @@ export const Separator = styled.div`
   display: flex;
   justify-content: center;
 `
-export const StartCountdownButton = styled.div`
+export const StartCountdownButton = styled.button`
   width: 100%;
   border: 0;
   padding: 1rem;
