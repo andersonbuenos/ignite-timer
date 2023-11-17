@@ -33,6 +33,7 @@ interface Cycle {
 export function Home() {
 
     const [cycles, setCycles] = useState<Cycle[]>([])
+    const [activeCycleId, setActiveCycleId] = useState<string | null>(null)
 
     const { register, handleSubmit, watch, reset } = useForm<NewCycleFormData>({
         resolver: zodResolver(newCycleFormValidationSchema),
@@ -49,10 +50,14 @@ export function Home() {
             task: data.task,
             minutesAmount: data.minutesAmount,
         }
+        
+        setCycles((state) =>[...state, newCycle])
+        setActiveCycleId(newCycle.id)
 
-
-        reset();
+        reset()
     }
+
+    const activeCycle = cycles.find((cycle) => cycle.id === activeCycleId)
 
     const task = watch('task')
     const isSubmitDisabled = !task
